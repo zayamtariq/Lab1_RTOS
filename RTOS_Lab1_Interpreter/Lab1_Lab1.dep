@@ -36,7 +36,8 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025E854)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/OS.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/ST7735.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../inc/ADCT0ATrigger.h)(0x63C311FA)
-I (..\RTOS_Labs_common\../inc/ADCSWTrigger.h)(0x63C311FA)
+I (..\RTOS_Labs_common\../inc/ADCSWTrigger.h)(0x63C32C05)
+I (..\RTOS_Labs_common\../inc/../inc/tm4c123gh6pm.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/UART0int.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/eDisk.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/eFile.h)(0x63C311FA)
@@ -88,11 +89,11 @@ I (..\RTOS_Labs_common\../RTOS_Labs_common/OS.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/eDisk.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../RTOS_Labs_common/eFile.h)(0x63C311FA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x6025E854)
-F (..\RTOS_Labs_common\ADC.c)(0x63C31D1D)(--c99 -c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I .. -I ..\..\..-I.\RTE\_Lab1-IC:\Users\ottav\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\ottav\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="536" -D_RTE_ -DTM4C123GH6PM -D_RTE_ -Drvmdk -DPART_LM4F120H5QR-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
+F (..\RTOS_Labs_common\ADC.c)(0x63C32C67)(--c99 -c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork --split_sections --signed_chars -I .. -I ..\..\..-I.\RTE\_Lab1-IC:\Users\ottav\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\ottav\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="536" -D_RTE_ -DTM4C123GH6PM -D_RTE_ -Drvmdk -DPART_LM4F120H5QR-o .\adc.o --omf_browse .\adc.crf --depend .\adc.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x6025E85E)
-I (..\RTOS_Labs_common\../inc/ADCSWTrigger.h)(0x63C311FA)
+I (..\RTOS_Labs_common\../inc/ADCSWTrigger.h)(0x63C32C05)
+I (..\RTOS_Labs_common\../inc/../inc/tm4c123gh6pm.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../inc/CortexM.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../inc/LaunchPad.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../inc/PLL.h)(0x63C311FA)
 I (..\RTOS_Labs_common\../inc/Timer4A.h)(0x63C311FA)
-I (..\RTOS_Labs_common\../inc/tm4c123gh6pm.h)(0x63C311FA)

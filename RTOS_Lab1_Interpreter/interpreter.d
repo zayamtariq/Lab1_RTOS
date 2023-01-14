@@ -6,6 +6,7 @@
 .\interpreter.o: ..\RTOS_Labs_common\../RTOS_Labs_common/ST7735.h
 .\interpreter.o: ..\RTOS_Labs_common\../inc/ADCT0ATrigger.h
 .\interpreter.o: ..\RTOS_Labs_common\../inc/ADCSWTrigger.h
+.\interpreter.o: ..\RTOS_Labs_common\../inc/../inc/tm4c123gh6pm.h
 .\interpreter.o: ..\RTOS_Labs_common\../RTOS_Labs_common/UART0int.h
 .\interpreter.o: ..\RTOS_Labs_common\../RTOS_Labs_common/eDisk.h
 .\interpreter.o: ..\RTOS_Labs_common\../RTOS_Labs_common/eFile.h
