@@ -15,6 +15,28 @@
 #include "../RTOS_Labs_common/eDisk.h"
 #include "../RTOS_Labs_common/eFile.h"
 
+enum command{help,echo,ADCTest,showTime,error};
+
+enum command parseCommand(char *command_){
+	enum command returnCommand = error;
+	
+	if(strncmp(command_,"help",10)){
+	returnCommand = help;
+	}
+	
+	if(strncmp(command_,"command",10)){
+	returnCommand = echo;
+	}
+	
+	if(strncmp(command_,"ADCTest",10)){
+	returnCommand = ADCTest;		
+	}
+	
+	if(strncmp(command_,"showTime",10)){
+	returnCommand = showTime;
+	}
+	return returnCommand;
+}
 
 
 // Print jitter histogram
