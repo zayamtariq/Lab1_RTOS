@@ -61,7 +61,12 @@ int main(void){
   Timer4A_Init(&DAStask,80000000/10,1); // 10 Hz sampling, priority=1
   OS_ClearMsTime();    // start a periodic interrupt to maintain time
   EnableInterrupts();  
-    
+		
+	/*
+	while (1) { 
+		ST7735_Message(0, 5, "hello", OS_MsTime()); 
+	}*/ 
+	
   Interpreter();     // finally, launch interpreter, should never return
 } 
 

@@ -1406,8 +1406,79 @@ void ST7735_OutUDec2(uint32_t n, uint32_t l){
 //        pt      pointer to a null terminated string to be printed
 //        value   signed integer to be printed
 void ST7735_Message(uint32_t  d, uint32_t  l, char *pt, int32_t value){
-  // write this as part of Labs 1 and 2
-
+	// screen is 128 x 160 pixels 
+	// top half should be 	 (0, 0) to (128, 80) 
+	// bottom half should be (0, 80) to (128, 160)
+	uint8_t y_coord; // where message will be printed (x_coord should always equal 0) 
+	if (d == 0) { 
+		switch (l) { 
+			case 0: 
+				y_coord = 0; 
+				break; 
+			case 1: 
+				y_coord = 1;
+				break;
+			case 2: 
+				y_coord = 2; 
+				break;
+			case 3: 
+				y_coord = 3; 
+				break;
+			case 4: 
+				y_coord = 4; 
+				break;
+			case 5: 
+				y_coord = 5; 
+				break;
+			case 6: 
+				y_coord = 6; 
+				break;
+			case 7: 
+				y_coord = 7; 
+				break;
+			default: 
+				printf("invalid line #");
+				return; 
+		}
+	} 
+	else if (d == 1) { 
+		switch (l) { 
+			case 0: 
+				y_coord = 8; 
+				break;
+			case 1: 
+				y_coord = 9; 
+				break;
+			case 2: 
+				y_coord = 10;
+				break;
+			case 3: 
+				y_coord = 11; 
+				break;
+			case 4: 
+				y_coord = 12;
+				break;
+			case 5: 
+				y_coord = 13; 
+				break;
+			case 6: 
+				y_coord = 14; 
+				break;
+			case 7: 
+				y_coord = 15; 
+				break;
+			default: 
+				printf("invalid line #");
+				return; 
+		}
+	}
+	else { 
+		printf("invalid screen #"); 
+		return; 
+	}
+	ST7735_SetCursor(0, y_coord); 
+	ST7735_OutString(pt); 
+	ST7735_OutUDec5(value); 
 }
 
 //-----------------------ST7735_OutUDec4-----------------------

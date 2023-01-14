@@ -14,6 +14,7 @@
 #include "../inc/PLL.h"
 #include "../inc/LaunchPad.h"
 #include "../inc/Timer4A.h"
+#include "../inc/Timer5A.h"
 #include "../inc/WTimer0A.h"
 #include "../RTOS_Labs_common/OS.h"
 #include "../RTOS_Labs_common/ST7735.h"
@@ -27,6 +28,7 @@ int32_t MaxJitter;             // largest time jitter between interrupts in usec
 #define JITTERSIZE 64
 uint32_t const JitterSize=JITTERSIZE;
 uint32_t JitterHistogram[JITTERSIZE]={0,};
+uint32_t milliseconds=0; 
 
 
 /*------------------------------------------------------------------------------
@@ -392,6 +394,11 @@ uint32_t OS_TimeDifference(uint32_t start, uint32_t stop){
 };
 
 
+//periodic task to increment milliseconds
+void incrementMS() { 
+	milliseconds++;
+}
+
 // ******** OS_ClearMsTime ************
 // sets the system time to zero (solve for Lab 1), and start a periodic interrupt
 // Inputs:  none
@@ -399,7 +406,8 @@ uint32_t OS_TimeDifference(uint32_t start, uint32_t stop){
 // You are free to change how this works
 void OS_ClearMsTime(void){
   // put Lab 1 solution here
-
+	milliseconds = 0;
+	Timer5A_Init(&incrementMS, 80000, 0); 
 };
 
 // ******** OS_MsTime ************
@@ -410,7 +418,7 @@ void OS_ClearMsTime(void){
 // For Labs 2 and beyond, it is ok to make the resolution to match the first call to OS_AddPeriodicThread
 uint32_t OS_MsTime(void){
   // put Lab 1 solution here
-  return 0; // replace this line with solution
+  return milliseconds; // replace this line with solution
 };
 
 
