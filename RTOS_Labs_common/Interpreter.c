@@ -24,7 +24,7 @@ enum command parseCommand(char *command_){
 	returnCommand = help;
 	}
 	
-	if(strncmp(command_,"command",10)){
+	if(strncmp(command_,"echo",10)){
 	returnCommand = echo;
 	}
 	
@@ -38,6 +38,24 @@ enum command parseCommand(char *command_){
 	return returnCommand;
 }
 
+void helpCommand(void){
+return;
+}
+
+void showTimeCommand(void){
+return;
+}
+
+void echoCommand(void){
+return;
+}
+
+void ADCTestCommand(void){
+return;
+}
+
+
+
 
 // Print jitter histogram
 void Jitter(int32_t MaxJitter, uint32_t const JitterSize, uint32_t JitterHistogram[]){
@@ -50,7 +68,12 @@ void Interpreter(void){
   // write this  
 	
 	while(TRUE){
-			
+	//get line from UART
+	//strtok to get and remove first word of string
+	//get the command enum
+	//call appropriate function based on command enum
+	
+		
 		
 	}
 }

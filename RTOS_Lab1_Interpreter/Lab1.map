@@ -38,6 +38,7 @@ Section Cross References
     os.o(i.fputc) refers to os.o(i.OS_EndRedirectToFile) for OS_EndRedirectToFile
     os.o(i.fputc) refers to uart0int.o(i.UART_OutChar) for UART_OutChar
     os.o(i.fputc) refers to os.o(.data) for StreamToDevice
+    interpreter.o(i.parseCommand) refers to strncmp.o(.text) for strncmp
     launchpad.o(i.LaunchPad_WaitForRelease) refers to launchpad.o(i.DelayMs) for DelayMs
     launchpad.o(i.LaunchPad_WaitForTouch) refers to launchpad.o(i.DelayMs) for DelayMs
     st7735.o(i.ST7735_DrawBitmap) refers to st7735.o(i.setAddrWindow) for setAddrWindow
@@ -362,6 +363,7 @@ Removing Unused input sections from the image.
     Removing os.o(.constdata), (4 bytes).
     Removing os.o(.data), (8 bytes).
     Removing interpreter.o(i.Jitter), (2 bytes).
+    Removing interpreter.o(i.parseCommand), (104 bytes).
     Removing launchpad.o(i.DelayMs), (32 bytes).
     Removing launchpad.o(i.LaunchPad_Input), (24 bytes).
     Removing launchpad.o(i.LaunchPad_Output), (12 bytes).
@@ -492,7 +494,7 @@ Removing Unused input sections from the image.
     Removing efile.o(i.eFile_WOpen), (6 bytes).
     Removing efile.o(i.eFile_Write), (6 bytes).
 
-168 unused section(s) (total 12471 bytes) removed from the image.
+169 unused section(s) (total 12575 bytes) removed from the image.
 
 ==============================================================================
 
@@ -503,22 +505,23 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      644  startup.o(RESET)
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
     ../clib/microlib/string/strcpy.c         0x00000000   Number         0  strcpy.o ABSOLUTE
+    ../clib/microlib/string/strncmp.c        0x00000000   Number         0  strncmp.o ABSOLUTE
     ..\RTOS_Labs_common\ADC.c                0x00000000   Number         0  adc.o ABSOLUTE
     ..\RTOS_Labs_common\Interpreter.c        0x00000000   Number         0  interpreter.o ABSOLUTE
     ..\RTOS_Labs_common\OS.c                 0x00000000   Number         0  os.o ABSOLUTE
@@ -895,67 +898,67 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x00000000   0x00000000   0x00000284   Code   RO            3  * RESET               startup.o
-    0x00000284   0x00000284   0x00000000   Code   RO         1428  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00000284   0x00000284   0x00000004   Code   RO         1433    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x00000288   0x00000288   0x00000004   Code   RO         1436    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x0000028c   0x0000028c   0x00000000   Code   RO         1438    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x0000028c   0x0000028c   0x00000000   Code   RO         1440    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x0000028c   0x0000028c   0x00000008   Code   RO         1441    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000294   0x00000294   0x00000004   Code   RO         1448    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x00000298   0x00000298   0x00000000   Code   RO         1443    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x00000298   0x00000298   0x00000000   Code   RO         1445    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x00000298   0x00000298   0x00000004   Code   RO         1434    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000284   0x00000284   0x00000000   Code   RO         1434  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000284   0x00000284   0x00000004   Code   RO         1441    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000288   0x00000288   0x00000004   Code   RO         1444    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x0000028c   0x0000028c   0x00000000   Code   RO         1446    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x0000028c   0x0000028c   0x00000000   Code   RO         1448    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x0000028c   0x0000028c   0x00000008   Code   RO         1449    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000294   0x00000294   0x00000004   Code   RO         1456    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x00000298   0x00000298   0x00000000   Code   RO         1451    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x00000298   0x00000298   0x00000000   Code   RO         1453    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x00000298   0x00000298   0x00000004   Code   RO         1442    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
     0x0000029c   0x0000029c   0x0000001c   Code   RO            4    .text               startup.o
-    0x000002b8   0x000002b8   0x00000024   Code   RO         1449    .text               mc_w.l(init.o)
-    0x000002dc   0x000002dc   0x0000002c   Code   RO          873    i.ADC0_InSeq3       adcswtrigger.o
-    0x00000308   0x00000308   0x000003f8   Code   RO          876    i.ADC0_InitSWTriggerSeq3  adcswtrigger.o
-    0x00000700   0x00000700   0x00000008   Code   RO         1395    i.ADC_In            adc.o
-    0x00000708   0x00000708   0x00000016   Code   RO         1396    i.ADC_Init          adc.o
+    0x000002b8   0x000002b8   0x00000024   Code   RO         1457    .text               mc_w.l(init.o)
+    0x000002dc   0x000002dc   0x0000002c   Code   RO          879    i.ADC0_InSeq3       adcswtrigger.o
+    0x00000308   0x00000308   0x000003f8   Code   RO          882    i.ADC0_InitSWTriggerSeq3  adcswtrigger.o
+    0x00000700   0x00000700   0x00000008   Code   RO         1401    i.ADC_In            adc.o
+    0x00000708   0x00000708   0x00000016   Code   RO         1402    i.ADC_Init          adc.o
     0x0000071e   0x0000071e   0x00000002   PAD
-    0x00000720   0x00000720   0x0000008c   Code   RO         1176    i.CS_Init           edisk.o
+    0x00000720   0x00000720   0x0000008c   Code   RO         1182    i.CS_Init           edisk.o
     0x000007ac   0x000007ac   0x00000068   Code   RO           12    i.DAStask           lab1.o
-    0x00000814   0x00000814   0x00000020   Code   RO          439    i.Delay1ms          st7735.o
+    0x00000814   0x00000814   0x00000020   Code   RO          445    i.Delay1ms          st7735.o
     0x00000834   0x00000834   0x00000002   Code   RO           70    i.GPIOPortF_Handler  os.o
     0x00000836   0x00000836   0x00000002   PAD
-    0x00000838   0x00000838   0x00000040   Code   RO         1107    i.IRDistance_Convert  irdistance.o
+    0x00000838   0x00000838   0x00000040   Code   RO         1113    i.IRDistance_Convert  irdistance.o
     0x00000878   0x00000878   0x00000004   Code   RO          340    i.Interpreter       interpreter.o
-    0x0000087c   0x0000087c   0x0000005c   Code   RO          375    i.LaunchPad_Init    launchpad.o
-    0x000008d8   0x000008d8   0x00000080   Code   RO          968    i.Median            lpf.o
+    0x0000087c   0x0000087c   0x0000005c   Code   RO          381    i.LaunchPad_Init    launchpad.o
+    0x000008d8   0x000008d8   0x00000080   Code   RO          974    i.Median            lpf.o
     0x00000958   0x00000958   0x00000002   Code   RO           76    i.OS_ClearMsTime    os.o
     0x0000095a   0x0000095a   0x00000002   Code   RO           84    i.OS_InitSemaphore  os.o
-    0x0000095c   0x0000095c   0x0000007c   Code   RO          424    i.PLL_Init          pll.o
-    0x000009d8   0x000009d8   0x00000014   Code   RO          710    i.RxFifo_Init       uart0int.o
-    0x000009ec   0x000009ec   0x0000003c   Code   RO          711    i.RxFifo_Put        uart0int.o
-    0x00000a28   0x00000a28   0x00000018   Code   RO          712    i.RxFifo_Size       uart0int.o
-    0x00000a40   0x00000a40   0x000000ac   Code   RO          450    i.ST7735_FillRect   st7735.o
-    0x00000aec   0x00000aec   0x00000024   Code   RO          451    i.ST7735_FillScreen  st7735.o
-    0x00000b10   0x00000b10   0x00000088   Code   RO          453    i.ST7735_InitR      st7735.o
-    0x00000b98   0x00000b98   0x00000020   Code   RO          470    i.ST7735_SetCursor  st7735.o
+    0x0000095c   0x0000095c   0x0000007c   Code   RO          430    i.PLL_Init          pll.o
+    0x000009d8   0x000009d8   0x00000014   Code   RO          716    i.RxFifo_Init       uart0int.o
+    0x000009ec   0x000009ec   0x0000003c   Code   RO          717    i.RxFifo_Put        uart0int.o
+    0x00000a28   0x00000a28   0x00000018   Code   RO          718    i.RxFifo_Size       uart0int.o
+    0x00000a40   0x00000a40   0x000000ac   Code   RO          456    i.ST7735_FillRect   st7735.o
+    0x00000aec   0x00000aec   0x00000024   Code   RO          457    i.ST7735_FillScreen  st7735.o
+    0x00000b10   0x00000b10   0x00000088   Code   RO          459    i.ST7735_InitR      st7735.o
+    0x00000b98   0x00000b98   0x00000020   Code   RO          476    i.ST7735_SetCursor  st7735.o
     0x00000bb8   0x00000bb8   0x00000002   Code   RO          104    i.SysTick_Handler   os.o
     0x00000bba   0x00000bba   0x00000002   PAD
-    0x00000bbc   0x00000bbc   0x00000018   Code   RO         1122    i.Timer4A_Handler   timer4a.o
-    0x00000bd4   0x00000bd4   0x00000060   Code   RO         1123    i.Timer4A_Init      timer4a.o
-    0x00000c34   0x00000c34   0x0000003c   Code   RO          713    i.TxFifo_Get        uart0int.o
-    0x00000c70   0x00000c70   0x00000014   Code   RO          714    i.TxFifo_Init       uart0int.o
-    0x00000c84   0x00000c84   0x00000018   Code   RO          716    i.TxFifo_Size       uart0int.o
-    0x00000c9c   0x00000c9c   0x00000058   Code   RO          717    i.UART0_Handler     uart0int.o
-    0x00000cf4   0x00000cf4   0x000000c8   Code   RO          724    i.UART_Init         uart0int.o
-    0x00000dbc   0x00000dbc   0x00000018   Code   RO         1149    i.WideTimer0A_Handler  wtimer0a.o
-    0x00000dd4   0x00000dd4   0x0000000e   Code   RO         1453    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00000de2   0x00000de2   0x00000002   Code   RO         1454    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00000de4   0x00000de4   0x0000000e   Code   RO         1455    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00000df2   0x00000df2   0x00000056   Code   RO          474    i.commandList       st7735.o
-    0x00000e48   0x00000e48   0x0000018c   Code   RO          475    i.commonInit        st7735.o
-    0x00000fd4   0x00000fd4   0x0000002c   Code   RO          731    i.copyHardwareToSoftware  uart0int.o
-    0x00001000   0x00001000   0x0000002c   Code   RO          732    i.copySoftwareToHardware  uart0int.o
+    0x00000bbc   0x00000bbc   0x00000018   Code   RO         1128    i.Timer4A_Handler   timer4a.o
+    0x00000bd4   0x00000bd4   0x00000060   Code   RO         1129    i.Timer4A_Init      timer4a.o
+    0x00000c34   0x00000c34   0x0000003c   Code   RO          719    i.TxFifo_Get        uart0int.o
+    0x00000c70   0x00000c70   0x00000014   Code   RO          720    i.TxFifo_Init       uart0int.o
+    0x00000c84   0x00000c84   0x00000018   Code   RO          722    i.TxFifo_Size       uart0int.o
+    0x00000c9c   0x00000c9c   0x00000058   Code   RO          723    i.UART0_Handler     uart0int.o
+    0x00000cf4   0x00000cf4   0x000000c8   Code   RO          730    i.UART_Init         uart0int.o
+    0x00000dbc   0x00000dbc   0x00000018   Code   RO         1155    i.WideTimer0A_Handler  wtimer0a.o
+    0x00000dd4   0x00000dd4   0x0000000e   Code   RO         1461    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00000de2   0x00000de2   0x00000002   Code   RO         1462    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00000de4   0x00000de4   0x0000000e   Code   RO         1463    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000df2   0x00000df2   0x00000056   Code   RO          480    i.commandList       st7735.o
+    0x00000e48   0x00000e48   0x0000018c   Code   RO          481    i.commonInit        st7735.o
+    0x00000fd4   0x00000fd4   0x0000002c   Code   RO          737    i.copyHardwareToSoftware  uart0int.o
+    0x00001000   0x00001000   0x0000002c   Code   RO          738    i.copySoftwareToHardware  uart0int.o
     0x0000102c   0x0000102c   0x00000040   Code   RO           13    i.main              lab1.o
-    0x0000106c   0x0000106c   0x00000074   Code   RO          480    i.setAddrWindow     st7735.o
-    0x000010e0   0x000010e0   0x00000050   Code   RO          481    i.writecommand      st7735.o
-    0x00001130   0x00001130   0x00000054   Code   RO          482    i.writedata         st7735.o
-    0x00001184   0x00001184   0x00000842   Data   RO          484    .constdata          st7735.o
+    0x0000106c   0x0000106c   0x00000074   Code   RO          486    i.setAddrWindow     st7735.o
+    0x000010e0   0x000010e0   0x00000050   Code   RO          487    i.writecommand      st7735.o
+    0x00001130   0x00001130   0x00000054   Code   RO          488    i.writedata         st7735.o
+    0x00001184   0x00001184   0x00000842   Data   RO          490    .constdata          st7735.o
     0x000019c6   0x000019c6   0x00000002   PAD
-    0x000019c8   0x000019c8   0x00000040   Data   RO         1108    .constdata          irdistance.o
-    0x00001a08   0x00001a08   0x00000020   Data   RO         1451    Region$$Table       anon$$obj.o
+    0x000019c8   0x000019c8   0x00000040   Data   RO         1114    .constdata          irdistance.o
+    0x00001a08   0x00001a08   0x00000020   Data   RO         1459    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00001a28, Size: 0x000000f4, Max: 0xffffffff, ABSOLUTE)
@@ -963,18 +966,18 @@ Memory Map of the image
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000   0x00001a28   0x00000010   Data   RW           14    .data               lab1.o
-    0x20000010   0x00001a38   0x00000030   Data   RW          485    .data               st7735.o
-    0x20000040   0x00001a68   0x00000010   Data   RW          734    .data               uart0int.o
-    0x20000050   0x00001a78   0x0000009c   Data   RW          978    .data               lpf.o
-    0x200000ec   0x00001b14   0x00000004   Data   RW         1125    .data               timer4a.o
-    0x200000f0   0x00001b18   0x00000004   Data   RW         1152    .data               wtimer0a.o
+    0x20000010   0x00001a38   0x00000030   Data   RW          491    .data               st7735.o
+    0x20000040   0x00001a68   0x00000010   Data   RW          740    .data               uart0int.o
+    0x20000050   0x00001a78   0x0000009c   Data   RW          984    .data               lpf.o
+    0x200000ec   0x00001b14   0x00000004   Data   RW         1131    .data               timer4a.o
+    0x200000f0   0x00001b18   0x00000004   Data   RW         1158    .data               wtimer0a.o
 
 
     Execution Region ER_ZI (Exec base: 0x200000f4, Load base: 0x00001b1c, Size: 0x00000c04, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x200000f4        -       0x00000800   Zero   RW          733    .bss                uart0int.o
+    0x200000f4        -       0x00000800   Zero   RW          739    .bss                uart0int.o
     0x200008f4   0x00001b1c   0x00000004   PAD
     0x200008f8        -       0x00000400   Zero   RW            1    STACK               startup.o
 
